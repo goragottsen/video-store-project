@@ -1,0 +1,39 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi="true" *ngIf="videos.length > 0 && !isLoading">
+  <mat-form-field>
+    <input matInput type="text" class="form-control" [(ngModel)]="searchText" name="search" placeholder="Type movie title" />
+  </mat-form-field>
+  <mat-expansion-panel *ngFor="let video of videos | videoFilter: searchText">
+    <mat-expansion-panel-header>
+      {{ video.title }}
+    </mat-expansion-panel-header>
+      <img [src]="video.imagePath" [alt]="video.title">
+    <mat-list>
+        <mat-list-item>
+          <p matLine> <span> Running Time: </span> <span> {{ video.runningTime}} </span></p>
+        </mat-list-item>
+        <mat-list-item>
+            <p matLine> <span> Genre: </span> <span> {{ video.genre}} </span></p>
+          </mat-list-item>
+          <mat-list-item>
+              <p matLine> <span> Rating: </span> <span> {{ video.rating}} </span></p>
+            </mat-list-item>
+            <mat-list-item>
+                <p matLine> <span> Derector: </span> <span> {{ video.director}} </span></p>
+              </mat-list-item>
+              <mat-list-item>
+                  <p matLine> <span> Status: </span> <span> {{ video.status}} </span></p>
+                </mat-list-item>
+    </mat-list>
+    <mat-action-row *ngIf="adminIsAuthenticated">
+        <button mat-button color="accent" [routerLink]="['/edit', video.id]">EDIT</button>
+        <button mat-button color="warn" (click)="onDelete(video.id)">DELETE</button>
+      </mat-action-row>
+      <mat-action-row *ngIf="!adminIsAuthenticated && video.status == 'Available'">
+        <button mat-button color="accent" [routerLink]="['/reserve', video.id]">RESERVE</button>
+      </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-paginator [length]="totalVideos" [pageSize]="videosPerPage" [pageSizeOptions]="pageSizeOptions"
+  (page)="onChangedPage($event)" *ngIf="videos.length > 0"></mat-paginator>
+<p class="info-text mat-body-1" *ngIf="videos.length <= 0 && !isLoading">No Videos added yet!</p>

@@ -1,0 +1,81 @@
+<mat-card>
+  <mat-spinner *ngIf = "isLoading"></mat-spinner>
+  <form [formGroup]="form" (submit)="onSaveVideo()" *ngIf="!isLoading">
+      <mat-form-field>
+          <input
+            matInput
+            type="text"
+            formControlName="title"
+            placeholder="Title">
+          <mat-error *ngIf="form.get('title').invalid">Please enter a valid title.</mat-error>
+        </mat-form-field>
+        <div>
+          <button mat-stroked-button type="button" (click)="filePicker.click()">Browse</button>
+          <input type="file" #filePicker (change)="onImagePicked($event)">
+        </div>
+        <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+          <img [src]="imagePreview" [alt]="form.value.title">
+        </div>
+      <p>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            formControlName="runningTime"
+            placeholder="Running Time">
+          <mat-error *ngIf="form.get('runningTime').invalid">Please enter a valid running time.</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            formControlName="genre"
+            placeholder="Genre">
+          <mat-error *ngIf="form.get('genre').invalid">Please enter a valid genre.</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            formControlName="rating"
+            placeholder="Rating">
+          <mat-error *ngIf="form.get('rating').invalid">Please enter a valid rating.</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            formControlName="director"
+            placeholder="Director">
+          <mat-error *ngIf="form.get('director').invalid">Please enter a valid directoe name.</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-select [(value)]="selected"
+            type="text"
+            formControlName="status">
+            <mat-option value="Available">Available
+              </mat-option>
+              <mat-option value="Unavailable">Unavailable
+              </mat-option>
+            </mat-select>
+          <mat-error *ngIf="form.get('status').invalid">Please enter a valid status.</mat-error>
+        </mat-form-field>
+      </p>
+        <a mat-button
+          type="button"
+          color="warn"
+          routerLink='/' routerLinkActive="router-link-active" >Back</a>
+        <button
+          mat-raised-button
+          color="accent"
+          type="submit">Add</button>
+  </form>
+</mat-card>

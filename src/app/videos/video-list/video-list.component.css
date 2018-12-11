@@ -1,0 +1,47 @@
+:host {
+  display: block;
+  margin-top: 1rem;
+}
+
+.info-text {
+  text-align: center;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+.video-image {
+  width: 100%;
+}
+
+.video-image img {
+  width: 40%;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+mat-paginator {
+  margin-top: 1rem;
+}
+
+/* Structure */
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+img {
+  display: inline-block;
+  width: 20%;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  float: right;
+}
+
+mat-list .left {
+  display: float;
+  float: left;
+}

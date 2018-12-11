@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <span>
+    <a routerLink="/">Video Listing</a>
+  </span>
+  <span id="customers" *ngIf="adminIsAuthenticated">
+    <a routerLink="/customers">Customers</a>
+  </span>
+  <span class="spacer"></span>
+  <ul>
+    <li *ngIf="adminIsAuthenticated">
+      <a mat-button [routerLink]="['/create']" routerLinkActive="matt-accent">Add Video</a>
+    </li>
+    <li *ngIf="adminIsAuthenticated">
+      <a mat-button [routerLink]="['/createcustomer']" routerLinkActive="matt-accent">Add Customer</a>
+    </li>
+    <li *ngIf="!adminIsAuthenticated">
+      <a mat-button [routerLink]="['/login']" routerLinkActive="matt-accent">Admin Login</a>
+    </li>
+    <li *ngIf="adminIsAuthenticated">
+      <button mat-button (click)="onLogout()">Logout</button>
+    </li>
+  </ul>
+</mat-toolbar>

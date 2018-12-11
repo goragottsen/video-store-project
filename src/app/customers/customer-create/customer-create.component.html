@@ -1,0 +1,65 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form [formGroup]="form"  (submit)="onSaveCustomer()" *ngIf="!isLoading">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        formControlName="firstname"
+        minlength="3"
+        placeholder="First Name">
+      <mat-error *ngIf="form.get('firstname').invalid">Please enter a valid first name.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        formControlName="lastname"
+        minlength="3"
+        placeholder="Last Name">
+      <mat-error *ngIf="form.get('lastname').invalid">Please enter a valid last name.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        formControlName="address"
+        minlength="3"
+        placeholder="Address">
+      <mat-error *ngIf="form.get('address').invalid">Please enter a valid address.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        formControlName="city"
+        minlength="3"
+        placeholder="City">
+      <mat-error *ngIf="form.get('city').invalid">Please enter a valid city name.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        formControlName="phone"
+        minlength="3"
+        placeholder="Phone Number">
+      <mat-error *ngIf="form.get('phone').invalid">Please enter a valid phone number.</mat-error>
+    </mat-form-field>
+        <mat-form-field>
+          <mat-select [(value)]="selected"
+            type="text"
+            formControlName="status">
+            <mat-option value="Active">Active
+              </mat-option>
+              <mat-option value="Expired">Expired
+              </mat-option>
+            </mat-select>
+          <mat-error *ngIf="form.get('status').invalid">Please enter a valid status.</mat-error>
+        </mat-form-field>
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit">Save Customer</button>
+  </form>
+</mat-card>
